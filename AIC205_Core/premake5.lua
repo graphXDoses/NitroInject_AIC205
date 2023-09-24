@@ -1,24 +1,40 @@
 project "AIC205_Core"
     language "C"
+    cdialect "C99"
 
-    targetdir ("%{wks.location}/build/bin/%{cfg.buildcfg}/")
-	  objdir ("%{wks.location}/build/bin-int/")
+    defines { "_CRT_SECURE_NO_WARNINGS" }
+    targetname "aic205"
+
+    targetdir ("%{wks.location}/build/%{prj.name}_%{cfg.buildcfg}/bin/")
+	  objdir ("%{wks.location}/build/%{prj.name}_%{cfg.buildcfg}/bin-int/")
 
     files
     {
-        "*.h",
-        "*.c"
+        "src/**.h",
+        "src/**.c"
+    }
+
+    includedirs
+    {
+        "src"
+    }
+
+    postbuildcommands {
+      "if not exist $(SolutionDir)\\TestingProjects\\common mkdir $(SolutionDir)\\TestingProjects\\common",
+      "{COPY} %{prj.location}src/aic205.h $(SolutionDir)\\TestingProjects\\common",
+      "{COPY} %{cfg.targetdir}/aic205.lib $(SolutionDir)\\TestingProjects\\common"
     }
 
     filter "system:windows"
         systemversion "latest"
 
     filter "configurations:Debug"
-        kind "ConsoleApp"
+        kind "StaticLib"
         runtime "Debug"
         symbols "on"
 
     filter "configurations:Release"
-        kind "ConsoleApp"
+        kind "StaticLib"
         runtime "Release"
         optimize "on"
+        symbols "off"

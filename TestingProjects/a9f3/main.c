@@ -87,7 +87,6 @@ void showQ(Queue* ClinicQ, int ClinicID)
 	printf("Appointments of clinic %i\n", ClinicID);
 	setTraverse_Queue(traverseClinicQueue);
 	ClinicQ->Traverse();
-	puts("");
 }
 
 void showWaitingQ(Queue* WaitQ)
