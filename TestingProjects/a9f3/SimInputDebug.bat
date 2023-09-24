@@ -1,0 +1,1 @@
+a9f3.exe < INPUT > OUTPUT.txt

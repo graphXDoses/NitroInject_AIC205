@@ -1,0 +1,2 @@
+# AIC205 - Nitro Injected
+Custom library built using AIC205 (Data Structures Lecture (DAI/UoM)) code resources as reference. The goal is to abstract as much of the verbose and redundant implementation of basic data structures like (Stacks, Queue etc.) while maintaining functionality intact. Also make it appear C++(ish), with class-like structures containing function pointers to unique function implementations that do not require object reference. Code has to be compliant with ANSI C99.

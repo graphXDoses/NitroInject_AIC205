@@ -1,0 +1,10 @@
+# Exclude Directories
+.vs/
+build/
+
+# Exclude Files
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+**.lib
