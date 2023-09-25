@@ -1,3 +1,3 @@
 #!/bin/bash
-var=$(git clean -f -d $1 -x)
+var=$(git clean -f -d -x)
 echo $var
