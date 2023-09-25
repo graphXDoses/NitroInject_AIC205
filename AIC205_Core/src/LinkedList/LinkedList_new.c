@@ -27,11 +27,10 @@ LinkedList* newLinkedList(size_t size)
 		_##name##_LinkedList_06  \
 	};
 
+	LOAD_FUNCPOOL(isEmpty)
+	LOAD_FUNCPOOL(isFull)
 	LOAD_FUNCPOOL(Insert)
 	LOAD_FUNCPOOL(Delete)
-	LOAD_FUNCPOOL(GetNode)
-	LOAD_FUNCPOOL(isFull)
-	LOAD_FUNCPOOL(isEmpty)
 	LOAD_FUNCPOOL(Traverse)
 
 #undef LOAD_FUNCPOOL
@@ -60,11 +59,10 @@ LinkedList* newLinkedList(size_t size)
 	THIS->name = name##_LinkedList_##FuncPool[i];
 
 #pragma warning(disable : 4113)
+	BIND_METHOD_TO_OBJECT(isEmpty,  THIS)
+	BIND_METHOD_TO_OBJECT(isFull,   THIS)
 	BIND_METHOD_TO_OBJECT(Insert, 0, 0, THIS)
 	BIND_METHOD_TO_OBJECT(Delete, 0, THIS)
-	BIND_METHOD_TO_OBJECT(GetNode,  THIS)
-	BIND_METHOD_TO_OBJECT(isFull,   THIS)
-	BIND_METHOD_TO_OBJECT(isEmpty,  THIS)
 	BIND_METHOD_TO_OBJECT(Traverse, THIS)
 #pragma warning(default : 4113)
 

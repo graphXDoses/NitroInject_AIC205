@@ -13,7 +13,6 @@ typedef struct
 
 METHOD_DECL(void,    Insert_LinkedList,   void*, int, LinkedList*);
 METHOD_DECL(void*,   Delete_LinkedList,   int,   LinkedList*);
-METHOD_DECL(int,     GetNode_LinkedList,  LinkedList*);
 METHOD_DECL(Boolean, isFull_LinkedList,   LinkedList*);
 METHOD_DECL(Boolean, isEmpty_LinkedList,  LinkedList*);
 METHOD_DECL(void,    Traverse_LinkedList, LinkedList*);

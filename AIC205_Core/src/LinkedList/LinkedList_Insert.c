@@ -1,10 +1,22 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_INSERT
 
+static int GetNode_internal(LinkedList* ll)
+{
+	ElementSpecification* spec = (ElementSpecification*)ll;
+	int res = ((LinkedList_*)ll)->FreePtr;
+
+	if (!(ll->isFull()))
+		((LinkedList_*)ll)->FreePtr = *((int*)(spec->Memory + ((spec->per_elem_size +
+			sizeof(int)) * ((LinkedList_*)ll)->FreePtr)));
+
+	return(res);
+}
+
 static void Insert_internal(void* item, int PredPtr, LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
-	int TempPtr = ll->GetNode();
+	int TempPtr = GetNode_internal(ll);
 	int step = spec->per_elem_size + sizeof(int);
 	char* ptr = spec->Memory;
 	char* ptr2 = ptr;

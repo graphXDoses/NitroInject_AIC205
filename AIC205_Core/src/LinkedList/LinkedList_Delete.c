@@ -1,9 +1,48 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_DELETE
 
+static void ReleaseNode_internal(LinkedList* ll, int TempPtr)
+{
+    ElementSpecification* spec = (ElementSpecification*)ll;
+    int step = spec->per_elem_size + sizeof(int);
+    char* ptr = spec->Memory;
+    
+    *((int*)(&(ptr[(step * TempPtr)]))) = ((LinkedList_*)ll)->FreePtr;
+    ((LinkedList_*)ll)->FreePtr = TempPtr;
+}
+
 static void* Delete_internal(int ref, LinkedList* ll)
 {
-	return(NULL);
+    ElementSpecification* spec = (ElementSpecification*)ll;
+    int TempPtr;
+    //int PredPtr = ((LinkedList_*)ll)->PredPtr;
+    int step = spec->per_elem_size + sizeof(int);
+    char* ptr = spec->Memory;
+    char* ptr2 = ptr;
+
+    if (!(ll->isEmpty()))
+    {
+        if (ref == NilValue)
+        {
+            TempPtr = ((LinkedList_*)ll)->LLPointer;
+            ((LinkedList_*)ll)->LLPointer = *((int*)(&(ptr[(step * TempPtr)])));
+        }
+        else
+        {
+            ref = ref < 1 ? 0 : ref;
+            TempPtr = *((int*)(&(ptr[(step * (ref + 1))])));
+            *((int*)(&(ptr[(step * (ref + 1))]))) = *((int*)(&(ptr[(step * TempPtr)])));
+        }
+        ReleaseNode_internal(ll, TempPtr);
+        ptr2 = ((int*)(&(ptr[(step * TempPtr)]))) + 1;
+    }
+    else
+    {
+        puts("Empty List..");
+        return(NULL);
+    }
+
+    return(ptr2);
 }
 
 #define DELETE_METHOD_IMPL(instance) \

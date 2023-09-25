@@ -65,11 +65,10 @@ typedef struct
 	ElementSpecification _internal;
 	int ID;
 	// Methods
+	Boolean (*isEmpty)(void);
+	Boolean (*isFull)(void);
 	void    (*Insert)(void*,int);
 	void*   (*Delete)(int);
-	int     (*GetNode)(void);
-	Boolean (*isFull)(void);
-	Boolean (*isEmpty)(void);
 	void    (*Traverse)(void);
 } LinkedList;
 

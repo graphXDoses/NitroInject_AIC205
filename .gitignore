@@ -1,6 +1,7 @@
 # Exclude Directories
 .vs/
 build/
+**/common
 
 # Exclude Files
 **.sln
