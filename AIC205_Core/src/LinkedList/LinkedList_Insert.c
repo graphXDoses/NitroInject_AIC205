@@ -1,19 +1,19 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_INSERT
 
-static int GetNode_internal(LinkedList* ll)
+static int GetNode_internal(_LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
-	int res = ((LinkedList_*)ll)->FreePtr;
+	int res = ll->FreePtr;
 
-	if (!(ll->isFull()))
-		((LinkedList_*)ll)->FreePtr = *((int*)(spec->Memory + ((spec->per_elem_size +
-			sizeof(int)) * ((LinkedList_*)ll)->FreePtr)));
+	if (!(ll->Public.isFull()))
+		ll->FreePtr = *((int*)(spec->Memory + ((spec->per_elem_size +
+			sizeof(int)) * ll->FreePtr)));
 
 	return(res);
 }
 
-static void Insert_internal(void* item, int PredPtr, LinkedList* ll)
+static void Insert_internal(void* item, int PredPtr, _LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int TempPtr = GetNode_internal(ll);
@@ -26,9 +26,9 @@ static void Insert_internal(void* item, int PredPtr, LinkedList* ll)
 		if (PredPtr == NilValue)
 		{
 			ptr = (spec->Memory + (step * TempPtr));
-			*(((int*)ptr)++) = ((LinkedList_*)ll)->LLPointer;
+			*(((int*)ptr)++) = ll->LLPointer;
 			memcpy(ptr, item, spec->per_elem_size);
-			((LinkedList_*)ll)->LLPointer = TempPtr;
+			ll->LLPointer = TempPtr;
 		}
 		else
 		{
@@ -50,9 +50,9 @@ void _Insert_LinkedList_##instance(void* item, int PredPtr, LinkedList* targ) \
 { METHOD_INIT(LinkedList); Insert_internal(item, PredPtr, obj); }
 
 #ifdef DEBUG_LL_INSERT
-void _Insert_LinkedList_01(void* item, int PredPtr, LinkedList* targ)
+void _Insert_LinkedList_01(void* item, int PredPtr, _LinkedList* targ)
 {
-	METHOD_INIT(LinkedList);
+	METHOD_INIT(_LinkedList);
 	Insert_internal(item, PredPtr, obj);
 }
 #else

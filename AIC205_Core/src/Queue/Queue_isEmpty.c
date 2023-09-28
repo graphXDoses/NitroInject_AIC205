@@ -3,19 +3,19 @@
 #pragma warning(disable : 4033)
 //#define DEBUG_QUEUE_ISEMPTY
 
-static Boolean isEmpty_internal(Queue* q)
+static Boolean isEmpty_internal(_Queue* q)
 {
 	return (q->Front == q->Rear);
 }
 
 #define ISEMPTY_METHOD_IMPL(instance) \
-Boolean _isEmpty_Queue_##instance(Queue* targ) \
-{ METHOD_INIT_ZERO(Queue); return(isEmpty_internal(obj)); }
+Boolean _isEmpty_Queue_##instance(_Queue* targ) \
+{ METHOD_INIT_ZERO(_Queue); return(isEmpty_internal(obj)); }
 
 #ifdef DEBUG_QUEUE_ISEMPTY
-Boolean _isEmpty_Queue_01(Queue* targ)
+Boolean _isEmpty_Queue_01(_Queue* targ)
 {
-	METHOD_INIT_ZERO(Queue);
+	METHOD_INIT_ZERO(_Queue);
 	return(isEmpty_internal(obj));
 }
 #else

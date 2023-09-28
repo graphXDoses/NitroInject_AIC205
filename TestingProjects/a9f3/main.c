@@ -55,7 +55,9 @@ Boolean newAppointment(int clinicID, Queue* ClinicQ, Queue* WaitQ)
 {
 	QueueElementType Sample;
 	char res = 0;
-	Boolean ClinicFull = (Boolean)((ClinicQ->Rear - ClinicQ->Front) > 1);
+	int Front = *(((int*)(ClinicQ + 1)) + 1);
+	int Rear = *(((int*)(ClinicQ + 1)) + 2);
+	Boolean ClinicFull = (Boolean)((Rear - Front) > 1);
 
 	printf("Give your name: ");
 	if (!ClinicFull)

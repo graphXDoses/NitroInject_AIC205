@@ -27,12 +27,12 @@ void setTraverse_Queue(Boolean (*newFunc)(void*))
 	_traverseFuncPointer = newFunc;
 }
 
-static void traverseQueue_internal(Queue* q)
+static void traverseQueue_internal(_Queue* q)
 {
 	int current;
 	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (q->_internal.per_elem_size);
 	char* Sample = q->_internal.Memory;
-	if (!(q->isEmpty()))
+	if (!(q->Public.isEmpty()))
 	{
 		current = q->Front;
 		while (current != q->Rear) {
@@ -46,8 +46,8 @@ static void traverseQueue_internal(Queue* q)
 }
 
 #define TRAVERSE_METHOD_IMPL(instance) \
-void _Traverse_Queue_##instance(Queue* targ) \
-{ METHOD_INIT(Queue); traverseQueue_internal(obj); }
+void _Traverse_Queue_##instance(_Queue* targ) \
+{ METHOD_INIT(_Queue); traverseQueue_internal(obj); }
 
 TRAVERSE_METHOD_IMPL(01)
 TRAVERSE_METHOD_IMPL(02)

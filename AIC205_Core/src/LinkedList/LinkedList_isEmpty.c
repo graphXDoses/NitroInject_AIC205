@@ -1,19 +1,19 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_ISEMPTY
 
-static Boolean isEmpty_internal(LinkedList* ll)
+static Boolean isEmpty_internal(_LinkedList* ll)
 {
-	return (((LinkedList_*)ll)->LLPointer == NilValue);
+	return (ll->LLPointer == NilValue);
 }
 
 #define ISEMPTY_METHOD_IMPL(instance) \
-Boolean _isEmpty_LinkedList_##instance(LinkedList* targ) \
-{ METHOD_INIT_ZERO(LinkedList); return(isEmpty_internal(obj)); }
+Boolean _isEmpty_LinkedList_##instance(_LinkedList* targ) \
+{ METHOD_INIT_ZERO(_LinkedList); return(isEmpty_internal(obj)); }
 
 #ifdef DEBUG_LL_ISEMPTY
-Boolean _isEmpty_LinkedList_01(LinkedList* targ)
+Boolean _isEmpty_LinkedList_01(_LinkedList* targ)
 {
-	METHOD_INIT_ZERO(LinkedList);
+	METHOD_INIT_ZERO(_LinkedList);
 	return(isEmpty_internal(obj));
 }
 #else

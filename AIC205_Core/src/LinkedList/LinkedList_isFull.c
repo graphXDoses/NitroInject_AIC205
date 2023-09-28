@@ -1,20 +1,19 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_ISFULL
 
-static Boolean isFull_internal(LinkedList* ll)
+static Boolean isFull_internal(_LinkedList* ll)
 {
-	LinkedList_* _this = (LinkedList_*)ll;
-	return (_this->FreePtr == NilValue);
+	return (ll->FreePtr == NilValue);
 }
 
 #define ISFULL_METHOD_IMPL(instance) \
-Boolean _isFull_LinkedList_##instance(LinkedList* targ) \
-{ METHOD_INIT_ZERO(LinkedList); return(isFull_internal(obj)); }
+Boolean _isFull_LinkedList_##instance(_LinkedList* targ) \
+{ METHOD_INIT_ZERO(_LinkedList); return(isFull_internal(obj)); }
 
 #ifdef DEBUG_LL_ISFULL
-Boolean _isFull_LinkedList_01(LinkedList* targ)
+Boolean _isFull_LinkedList_01(_LinkedList* targ)
 {
-	METHOD_INIT_ZERO(LinkedList);
+	METHOD_INIT_ZERO(_LinkedList);
 	return(isFull_internal(obj));
 }
 #else

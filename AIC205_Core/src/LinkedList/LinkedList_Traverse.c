@@ -22,16 +22,16 @@ static Boolean protectedTraverse(int CurrPtr, void* Data, int Next, size_t size)
 	return(printFnc(CurrPtr, Data, Next));
 }
 
-static void Traverse_internal(LinkedList* ll)
+static void Traverse_internal(_LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
-	int   CurrPtr = ((LinkedList_*)ll)->LLPointer;
+	int   CurrPtr = ll->LLPointer;
 	int   step    = spec->per_elem_size + sizeof(int);
 	int   Next;
 	void* Data;
 	char* ptr;
 
-	if (!(ll->isEmpty()))
+	if (!(ll->Public.isEmpty()))
 	{
 		while (CurrPtr != NilValue)
 		{
@@ -49,13 +49,13 @@ static void Traverse_internal(LinkedList* ll)
 }
 
 #define TRAVERSE_METHOD_IMPL(instance) \
-void _Traverse_LinkedList_##instance(LinkedList* targ) \
-{ METHOD_INIT(LinkedList); Traverse_internal(obj); }
+void _Traverse_LinkedList_##instance(_LinkedList* targ) \
+{ METHOD_INIT(_LinkedList); Traverse_internal(obj); }
 
 #ifdef DEBUG_LL_TRAVERSE
-void _Traverse_LinkedList_01(LinkedList* targ)
+void _Traverse_LinkedList_01(_LinkedList* targ)
 {
-	METHOD_INIT(LinkedList);
+	METHOD_INIT(_LinkedList);
 	Traverse_internal(obj);
 }
 #else

@@ -2,14 +2,13 @@
 
 #define DEBUG_QUEUE_ADD
 
-static void add_internal(void* item, Queue* q)
+static void add_internal(void* item, _Queue* q)
 {
 	ElementSpecification* spec = (ElementSpecification*)q;
 	char* ptr = spec->Memory + (q->Rear * spec->per_elem_size);
 	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (spec->per_elem_size);
-	if (!(q->isFull()))
+	if (!(q->Public.isFull()))
 	{
-		//q->Element[q->Rear] = val;
 		memcpy(ptr, item, spec->per_elem_size);
 		q->Rear = (q->Rear + 1) % max_q_elements;
 	}
@@ -18,13 +17,13 @@ static void add_internal(void* item, Queue* q)
 }
 
 #define ADD_METHOD_IMPL(instance) \
-void _Add_Queue_##instance(void* item, Queue* targ) \
-{ METHOD_INIT(Queue); add_internal(item, obj); }
+void _Add_Queue_##instance(void* item, _Queue* targ) \
+{ METHOD_INIT(_Queue); add_internal(item, obj); }
 
 #ifdef DEBUG_QUEUE_ADD
-void _Add_Queue_01(void* item, Queue* targ)
+void _Add_Queue_01(void* item, _Queue* targ)
 {
-	METHOD_INIT(Queue);
+	METHOD_INIT(_Queue);
 	add_internal(item, obj);
 }
 #else

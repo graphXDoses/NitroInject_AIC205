@@ -2,7 +2,7 @@
 #pragma warning(disable : 4715)
 #pragma warning(disable : 4033)
 
-static void* pop_internal(Stack* s)
+static void* pop_internal(_Stack* s)
 {
 	ElementSpecification* spec = (ElementSpecification*)s;
 	char* ptr = &(spec->Memory[s->Top-- * spec->per_elem_size]);
@@ -10,7 +10,7 @@ static void* pop_internal(Stack* s)
 }
 
 #define POP_METHOD_IMPL(instance) \
-void* _Pop_Stack_##instance(Stack* targ) { METHOD_INIT_ZERO(Stack); return(pop_internal(obj)); }
+void* _Pop_Stack_##instance(_Stack* targ) { METHOD_INIT_ZERO(_Stack); return(pop_internal(obj)); }
 
 POP_METHOD_IMPL(01)
 POP_METHOD_IMPL(02)

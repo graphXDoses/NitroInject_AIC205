@@ -6,7 +6,7 @@
 
 #pragma region Utils
 #define BYTE_OFFSET(end, start) (((char*)end) - ((char*)start))
-#define ITERRAY_BEGIN(a)        { void* q; int i; for(q = (void*)a, i=0; BYTE_OFFSET(q, a) < sizeof(a); ((char*)q)+=sizeof(a[0]), i++){
+#define ITERRAY_BEGIN(a)        { void* q; int n; for(q = (void*)a, n=0; BYTE_OFFSET(q, a) < sizeof(a); ((char*)q)+=sizeof(a[0]), n++){
 #define ITERRAY_END             }}
 
 typedef enum { False, True } Boolean;
@@ -28,8 +28,6 @@ typedef struct
 #pragma region Stack
 typedef struct
 {
-	ElementSpecification _internal;
-	int ID, Top;
 	// Methods
 	void    (*Push)(void*);
 	void*   (*Pop)(void);
@@ -45,8 +43,6 @@ extern void setTraverse_Stack(Boolean (*)(void*));
 #pragma region Queue
 typedef struct
 {
-	ElementSpecification _internal;
-	int ID, Front, Rear;
 	// Methods
 	Boolean (*isEmpty)(void);
 	Boolean (*isFull)(void);
@@ -62,8 +58,6 @@ extern void setTraverse_Queue(Boolean (*)(void*));
 #pragma region LinkedList
 typedef struct
 {
-	ElementSpecification _internal;
-	int ID;
 	// Methods
 	Boolean (*isEmpty)(void);
 	Boolean (*isFull)(void);

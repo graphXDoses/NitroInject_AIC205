@@ -1,7 +1,7 @@
 #include "Stack_internal.h"
 #define DEBUG_PUSH
 
-static void push_internal(void* item, Stack* s)
+static void push_internal(void* item, _Stack* s)
 {
     ElementSpecification* spec = (ElementSpecification*)s;
     s->Top++;
@@ -11,12 +11,12 @@ static void push_internal(void* item, Stack* s)
 }
 
 #define PUSH_METHOD_IMPL(instance) \
-void _Push_Stack_##instance(void* item, Stack* targ) { METHOD_INIT(Stack); push_internal(item, obj); }
+void _Push_Stack_##instance(void* item, _Stack* targ) { METHOD_INIT(_Stack); push_internal(item, obj); }
 
 #ifdef DEBUG_PUSH
-void _Push_Stack_01(void* item, Stack* targ)
+void _Push_Stack_01(void* item, _Stack* targ)
 { 
-    METHOD_INIT(Stack)
+    METHOD_INIT(_Stack)
     push_internal(item, obj);
 }
 #else

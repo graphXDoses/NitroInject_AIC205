@@ -2,14 +2,14 @@
 #pragma warning(disable : 4715)
 #pragma warning(disable : 4033)
 
-static Boolean isFull_internal(Stack* s)
+static Boolean isFull_internal(_Stack* s)
 {
 	ElementSpecification* spec = (ElementSpecification*)s;
-	return (s->Top == (TOTAL_ELEMENT_ARRAY_BYTES / spec->per_elem_size));
+	return (s->Top == ((TOTAL_ELEMENT_ARRAY_BYTES / spec->per_elem_size) - 1));
 }
 
 #define ISFULL_METHOD_IMPL(instance) \
-Boolean _isFull_Stack_##instance(Stack* targ) { METHOD_INIT_ZERO(Stack); return(isFull_internal(obj)); }
+Boolean _isFull_Stack_##instance(_Stack* targ) { METHOD_INIT_ZERO(_Stack); return(isFull_internal(obj)); }
 
 ISFULL_METHOD_IMPL(01)
 ISFULL_METHOD_IMPL(02)

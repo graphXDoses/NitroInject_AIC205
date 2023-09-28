@@ -1,17 +1,17 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_DELETE
 
-static void ReleaseNode_internal(LinkedList* ll, int TempPtr)
+static void ReleaseNode_internal(_LinkedList* ll, int TempPtr)
 {
     ElementSpecification* spec = (ElementSpecification*)ll;
     int step = spec->per_elem_size + sizeof(int);
     char* ptr = spec->Memory;
     
-    *((int*)(&(ptr[(step * TempPtr)]))) = ((LinkedList_*)ll)->FreePtr;
-    ((LinkedList_*)ll)->FreePtr = TempPtr;
+    *((int*)(&(ptr[(step * TempPtr)]))) = ll->FreePtr;
+    ll->FreePtr = TempPtr;
 }
 
-static void* Delete_internal(int ref, LinkedList* ll)
+static void* Delete_internal(int ref, _LinkedList* ll)
 {
     ElementSpecification* spec = (ElementSpecification*)ll;
     int TempPtr;
@@ -20,12 +20,12 @@ static void* Delete_internal(int ref, LinkedList* ll)
     char* ptr = spec->Memory;
     char* ptr2 = ptr;
 
-    if (!(ll->isEmpty()))
+    if (!(ll->Public.isEmpty()))
     {
         if (ref == NilValue)
         {
-            TempPtr = ((LinkedList_*)ll)->LLPointer;
-            ((LinkedList_*)ll)->LLPointer = *((int*)(&(ptr[(step * TempPtr)])));
+            TempPtr = ll->LLPointer;
+            ll->LLPointer = *((int*)(&(ptr[(step * TempPtr)])));
         }
         else
         {
@@ -46,13 +46,13 @@ static void* Delete_internal(int ref, LinkedList* ll)
 }
 
 #define DELETE_METHOD_IMPL(instance) \
-void* _Delete_LinkedList_##instance(int ref, LinkedList* targ) \
-{ METHOD_INIT_ZERO(LinkedList); return(Delete_internal(ref, obj)); }
+void* _Delete_LinkedList_##instance(int ref, _LinkedList* targ) \
+{ METHOD_INIT_ZERO(_LinkedList); return(Delete_internal(ref, obj)); }
 
 #ifdef DEBUG_LL_DELETE
-void* _Delete_LinkedList_01(int ref, LinkedList* targ) \
+void* _Delete_LinkedList_01(int ref, _LinkedList* targ) \
 {
-	METHOD_INIT_ZERO(LinkedList);
+	METHOD_INIT_ZERO(_LinkedList);
 	return(Delete_internal(ref, obj));
 }
 #else
