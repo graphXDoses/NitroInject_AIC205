@@ -21,7 +21,7 @@ Stack* newStack(size_t size)
 
 	THIS._internal.per_elem_size = size;
 
-	THIS.ID = n + 1;
+	THIS.ID  = n + 1;
 	THIS.Top = -1;
 
 #pragma warning(disable : 4113)

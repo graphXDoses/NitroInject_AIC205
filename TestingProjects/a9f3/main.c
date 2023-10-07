@@ -30,14 +30,14 @@ int main(void)
 {
 	Queue* Clinic[TOTAL_CLINICS];
 	Queue* Waiting_Queue = newQueue(sizeof(QueueElementType));
-	int i, n;
+	int z, n;
 
 	ITERRAY_BEGIN(Clinic)
 		Clinic[i] = newQueue(sizeof(QueueElementType));
 	ITERRAY_END;
 
 	randomForceSeed(54);
-	for (i = 0; i < MAX_PATIENTS; ++i)
+	for (z = 0; z < MAX_PATIENTS; ++z)
 	{   n = randomIntFromTo(1, TOTAL_CLINICS);
 		if (!(newAppointment(n, Clinic[n-1], Waiting_Queue))) break; }
 	puts("");

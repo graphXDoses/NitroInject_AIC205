@@ -21,7 +21,7 @@ Queue* newQueue(size_t size)
 	THIS._internal.per_elem_size = size;
 
 	// queue init stuff.
-	THIS.ID = n + 1;
+	THIS.ID    = n + 1;
 	THIS.Front = 0;
 	THIS.Rear  = 0;
 

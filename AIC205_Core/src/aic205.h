@@ -6,7 +6,7 @@
 
 #pragma region Utils
 #define BYTE_OFFSET(end, start) (((char*)end) - ((char*)start))
-#define ITERRAY_BEGIN(a)        { void* q; int n; for(q = (void*)a, n=0; BYTE_OFFSET(q, a) < sizeof(a); ((char*)q)+=sizeof(a[0]), n++){
+#define ITERRAY_BEGIN(a)        { void* q; int i; for(q = (void*)a, i=0; BYTE_OFFSET(q, a) < sizeof(a); ((char*)q)+=sizeof(a[0]), i++){
 #define ITERRAY_END             }}
 
 typedef enum { False, True } Boolean;
