@@ -1,22 +1,22 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_DELETE
 
-static void ReleaseNode_internal(_LinkedList* ll, int TempPtr)
+internal void ReleaseNode_internal(_LinkedList* ll, int TempPtr)
 {
     ElementSpecification* spec = (ElementSpecification*)ll;
-    int step = spec->per_elem_size + sizeof(int);
+    int step = spec->per_element_size + sizeof(int);
     char* ptr = spec->Memory;
     
     *((int*)(&(ptr[(step * TempPtr)]))) = ll->FreePtr;
     ll->FreePtr = TempPtr;
 }
 
-static void* Delete_internal(int ref, _LinkedList* ll)
+internal void* Delete_internal(int ref, _LinkedList* ll)
 {
     ElementSpecification* spec = (ElementSpecification*)ll;
     int TempPtr;
     //int PredPtr = ((LinkedList_*)ll)->PredPtr;
-    int step = spec->per_elem_size + sizeof(int);
+    int step = spec->per_element_size + sizeof(int);
     char* ptr = spec->Memory;
     char* ptr2 = ptr;
 
@@ -50,7 +50,7 @@ void* _Delete_LinkedList_##instance(int ref, _LinkedList* targ) \
 { METHOD_INIT_ZERO(_LinkedList); return(Delete_internal(ref, obj)); }
 
 #ifdef DEBUG_LL_DELETE
-void* _Delete_LinkedList_01(int ref, _LinkedList* targ) \
+void* _Delete_LinkedList_01(int ref, _LinkedList* targ)
 {
 	METHOD_INIT_ZERO(_LinkedList);
 	return(Delete_internal(ref, obj));

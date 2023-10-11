@@ -1,11 +1,11 @@
 #include "Queue_internal.h"
 //#define DEBUG_QUEUE_REMOVE
 
-static void* remove_internal(_Queue* q)
+internal void* remove_internal(_Queue* q)
 {
 	ElementSpecification* spec = (ElementSpecification*)q;
-	char* ptr = spec->Memory + (q->Front * spec->per_elem_size);
-	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (spec->per_elem_size);
+	char* ptr = spec->Memory + (q->Front * spec->per_element_size);
+	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (spec->per_element_size);
 
 	if (!(q->Public.isEmpty()))
 	{

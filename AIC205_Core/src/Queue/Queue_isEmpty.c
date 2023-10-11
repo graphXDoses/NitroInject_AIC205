@@ -3,7 +3,7 @@
 #pragma warning(disable : 4033)
 //#define DEBUG_QUEUE_ISEMPTY
 
-static Boolean isEmpty_internal(_Queue* q)
+internal Boolean isEmpty_internal(_Queue* q)
 {
 	return (q->Front == q->Rear);
 }

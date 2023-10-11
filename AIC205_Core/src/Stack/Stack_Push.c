@@ -1,13 +1,13 @@
 #include "Stack_internal.h"
 #define DEBUG_PUSH
 
-static void push_internal(void* item, _Stack* s)
+internal void push_internal(void* item, _Stack* s)
 {
     ElementSpecification* spec = (ElementSpecification*)s;
     s->Top++;
-    char* ptr = &(spec->Memory[s->Top * spec->per_elem_size]);
+    char* ptr = &(spec->Memory[s->Top * spec->per_element_size]);
 
-    memcpy(ptr, item, spec->per_elem_size);
+    memcpy(ptr, item, spec->per_element_size);
 }
 
 #define PUSH_METHOD_IMPL(instance) \

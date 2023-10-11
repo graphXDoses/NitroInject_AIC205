@@ -19,7 +19,7 @@ Stack* newStack(size_t size)
 		return(NULL);
 	}
 
-	THIS._internal.per_elem_size = size;
+	THIS._internal.per_element_size = size;
 
 	THIS.ID  = n + 1;
 	THIS.Top = -1;

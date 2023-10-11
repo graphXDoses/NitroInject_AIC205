@@ -2,14 +2,14 @@
 
 #define DEBUG_QUEUE_ADD
 
-static void add_internal(void* item, _Queue* q)
+internal void add_internal(void* item, _Queue* q)
 {
 	ElementSpecification* spec = (ElementSpecification*)q;
-	char* ptr = spec->Memory + (q->Rear * spec->per_elem_size);
-	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (spec->per_elem_size);
+	char* ptr = spec->Memory + (q->Rear * spec->per_element_size);
+	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (spec->per_element_size);
 	if (!(q->Public.isFull()))
 	{
-		memcpy(ptr, item, spec->per_elem_size);
+		memcpy(ptr, item, spec->per_element_size);
 		q->Rear = (q->Rear + 1) % max_q_elements;
 	}
 	else

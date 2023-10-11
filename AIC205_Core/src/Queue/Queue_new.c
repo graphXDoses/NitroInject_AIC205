@@ -18,7 +18,7 @@ Queue* newQueue(size_t size)
 		return(NULL);
 	}
 
-	THIS._internal.per_elem_size = size;
+	THIS._internal.per_element_size = size;
 
 	// queue init stuff.
 	THIS.ID    = n + 1;

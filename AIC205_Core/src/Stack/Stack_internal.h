@@ -3,6 +3,7 @@
 
 #include "aic205.h"
 #include "method_utils.h"
+#include "element_specification.h"
 
 typedef struct
 {

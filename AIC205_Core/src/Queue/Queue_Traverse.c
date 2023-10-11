@@ -1,42 +1,29 @@
 #include "Queue_internal.h"
 
-/*
-int current;
-if (!(s->isEmpty()))
-{
-	current = s->Front;
-	while (current != s->Rear) {
-		printf("%d ", s->Element[current]);
-		current = (current + 1) % MAX_QUEUE_ELEMENTS;
-	}
-		printf("\n");
-}
-*/
-
-static Boolean Traverse_Default(void* s)
+internal Boolean Traverse_Default(void* s)
 {
 	puts("Please replace \'" __FUNCTION__ "\' with own prototype"
 		" using the \'setTraverse_Queue\' function.");
 	return(False);
 }
 
-static Boolean (*_traverseFuncPointer)(void*) = Traverse_Default;
+internal Boolean (*_traverseFuncPointer)(void*) = Traverse_Default;
 
 void setTraverse_Queue(Boolean (*newFunc)(void*))
 {
 	_traverseFuncPointer = newFunc;
 }
 
-static void traverseQueue_internal(_Queue* q)
+internal void traverseQueue_internal(_Queue* q)
 {
 	int current;
-	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (q->_internal.per_elem_size);
+	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (q->_internal.per_element_size);
 	char* Sample = q->_internal.Memory;
 	if (!(q->Public.isEmpty()))
 	{
 		current = q->Front;
 		while (current != q->Rear) {
-			Sample = ((q->_internal.per_elem_size) * current) + (q->_internal.Memory);
+			Sample = ((q->_internal.per_element_size) * current) + (q->_internal.Memory);
 			if (!_traverseFuncPointer(Sample))
 				return;
 			current = (current + 1) % max_q_elements;

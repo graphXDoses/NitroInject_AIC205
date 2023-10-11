@@ -1,20 +1,16 @@
 #if !defined(METHOD_UTILS_H)
 #define METHOD_UTILS_H
 
-#define local_persist static
-#define NAME_MANGLE(name, id)  _##name##_##id
-
 #define MAX_DATASTRUCT_OBJECTS 6
 
 #define METHOD_DECL(retVal, name, ...) \
 typedef retVal (*name##_SIGN)(__VA_ARGS__); \
-extern  retVal NAME_MANGLE(name, 01)(__VA_ARGS__); \
-extern  retVal NAME_MANGLE(name, 02)(__VA_ARGS__); \
-extern  retVal NAME_MANGLE(name, 03)(__VA_ARGS__); \
-extern  retVal NAME_MANGLE(name, 04)(__VA_ARGS__); \
-extern  retVal NAME_MANGLE(name, 05)(__VA_ARGS__); \
-extern  retVal NAME_MANGLE(name, 06)(__VA_ARGS__);
-
+extern  retVal _##name##_##01(__VA_ARGS__); \
+extern  retVal _##name##_##02(__VA_ARGS__); \
+extern  retVal _##name##_##03(__VA_ARGS__); \
+extern  retVal _##name##_##04(__VA_ARGS__); \
+extern  retVal _##name##_##05(__VA_ARGS__); \
+extern  retVal _##name##_##06(__VA_ARGS__);
 
 #define METHOD_INIT(type) \
 	local_persist type* obj = NULL; \
@@ -37,8 +33,8 @@ extern  retVal NAME_MANGLE(name, 06)(__VA_ARGS__);
 }
 
 #define INIT_CTOR(clsType) \
-	static _##clsType instance[MAX_DATASTRUCT_OBJECTS] = { 0 }; \
-	static int n = NilValue; \
+	local_persist _##clsType instance[MAX_DATASTRUCT_OBJECTS] = { 0 }; \
+	local_persist int n = NilValue; \
 	n++
 
 #define _LOAD_FUNCPOOL(clsType, name) \

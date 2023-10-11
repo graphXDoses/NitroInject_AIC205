@@ -1,10 +1,10 @@
 #include "LinkedList_internal.h"
 
-static void initializeStoragePool(LinkedList* ll)
+internal void initializeStoragePool(LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int n, NumberOfNodes, step;
-	step = spec->per_elem_size + sizeof(int);
+	step = spec->per_element_size + sizeof(int);
 	
 	NumberOfNodes = TOTAL_ELEMENT_ARRAY_BYTES / step;
 	for (n = 0; n < NumberOfNodes - 1; n++)
@@ -32,7 +32,7 @@ LinkedList* newLinkedList(size_t size)
 		return(NULL);
 	}
 
-	THIS._internal.per_elem_size = size;
+	THIS._internal.per_element_size = size;
 
 	// LinkedList init stuff
 	THIS.ID        = n + 1;

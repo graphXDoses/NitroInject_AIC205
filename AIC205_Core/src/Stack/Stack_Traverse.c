@@ -1,20 +1,20 @@
 #include "Stack_internal.h"
 
-static Boolean Traverse_Default(void* s)
+internal Boolean Traverse_Default(void* s)
 {
 	puts("Please replace \'" __FUNCTION__ "\' with own prototype"
 		 " using the \'setTraverse_Stack\' function.");
 	return(False);
 }
 
-static Boolean (*_traverseFuncPointer)(void*) = Traverse_Default;
+internal Boolean (*_traverseFuncPointer)(void*) = Traverse_Default;
 
 void setTraverse_Stack(Boolean (*newFunc)(void*))
 {
 	_traverseFuncPointer = newFunc;
 }
 
-static void traverseStack_internal(_Stack* s)
+internal void traverseStack_internal(_Stack* s)
 {
 	int n;
 	ElementSpecification* spec = (ElementSpecification*)s;
@@ -23,7 +23,7 @@ static void traverseStack_internal(_Stack* s)
 	for (n = 0; n <= s->Top; n++) {
 		if (!_traverseFuncPointer(Sample))
 			return;
-		Sample += spec->per_elem_size;
+		Sample += spec->per_element_size;
 	}
 	puts("");
 }

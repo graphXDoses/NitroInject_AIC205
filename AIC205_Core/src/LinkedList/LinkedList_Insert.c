@@ -1,23 +1,23 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_INSERT
 
-static int GetNode_internal(_LinkedList* ll)
+internal int GetNode_internal(_LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int res = ll->FreePtr;
 
 	if (!(ll->Public.isFull()))
-		ll->FreePtr = *((int*)(spec->Memory + ((spec->per_elem_size +
+		ll->FreePtr = *((int*)(spec->Memory + ((spec->per_element_size +
 			sizeof(int)) * ll->FreePtr)));
 
 	return(res);
 }
 
-static void Insert_internal(void* item, int PredPtr, _LinkedList* ll)
+internal void Insert_internal(void* item, int PredPtr, _LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int TempPtr = GetNode_internal(ll);
-	int step = spec->per_elem_size + sizeof(int);
+	int step = spec->per_element_size + sizeof(int);
 	char* ptr = spec->Memory;
 	char* ptr2 = ptr;
 
@@ -27,7 +27,7 @@ static void Insert_internal(void* item, int PredPtr, _LinkedList* ll)
 		{
 			ptr = (spec->Memory + (step * TempPtr));
 			*(((int*)ptr)++) = ll->LLPointer;
-			memcpy(ptr, item, spec->per_elem_size);
+			memcpy(ptr, item, spec->per_element_size);
 			ll->LLPointer = TempPtr;
 		}
 		else
@@ -37,7 +37,7 @@ static void Insert_internal(void* item, int PredPtr, _LinkedList* ll)
 
 			*((int*)ptr) = *((int*)ptr2);
 			ptr = (((int*)ptr) + 1);
-			memcpy(ptr, item, spec->per_elem_size);
+			memcpy(ptr, item, spec->per_element_size);
 			*((int*)ptr2)  = TempPtr;
 		}
 	}

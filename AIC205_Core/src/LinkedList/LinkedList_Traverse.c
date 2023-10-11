@@ -1,32 +1,32 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_TRAVERSE
 
-static Boolean Traverse_Default(int CurrPtr, void* Data, int Next)
+internal Boolean Traverse_Default(int CurrPtr, void* Data, int Next)
 {
 	puts("Please replace \'" __FUNCTION__ "\' with own prototype"
 		" using the \'setTraverse_LinkedList\' function.");
 	return(False);
 }
 
-static Boolean(*printFnc)(int, void*, int) = Traverse_Default;
+internal Boolean(*printFnc)(int, void*, int) = Traverse_Default;
 
 void setTraverse_LinkedList(Boolean(*newFunc)(int, void*, int))
 {
 	printFnc = newFunc;
 }
 
-static Boolean protectedTraverse(int CurrPtr, void* Data, int Next, size_t size)
+internal Boolean protectedTraverse(int CurrPtr, void* Data, int Next, size_t size)
 {
 	if (CurrPtr == Next) return(False);
 	if (Next > (int)(TOTAL_ELEMENT_ARRAY_BYTES / size)) return(False);
 	return(printFnc(CurrPtr, Data, Next));
 }
 
-static void Traverse_internal(_LinkedList* ll)
+internal void Traverse_internal(_LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int   CurrPtr = ll->LLPointer;
-	int   step    = spec->per_elem_size + sizeof(int);
+	int   step    = spec->per_element_size + sizeof(int);
 	int   Next;
 	void* Data;
 	char* ptr;
@@ -38,7 +38,7 @@ static void Traverse_internal(_LinkedList* ll)
 			ptr  = (spec->Memory + (step * CurrPtr));
 			Next = *(((int*)ptr)++);
 			Data = (void*)ptr;
-			if (!protectedTraverse(CurrPtr, Data, Next, (spec->per_elem_size + sizeof(int))))
+			if (!protectedTraverse(CurrPtr, Data, Next, (spec->per_element_size + sizeof(int))))
 				break;
 			CurrPtr = Next;
 

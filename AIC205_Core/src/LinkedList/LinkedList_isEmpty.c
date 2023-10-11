@@ -1,7 +1,7 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_ISEMPTY
 
-static Boolean isEmpty_internal(_LinkedList* ll)
+internal Boolean isEmpty_internal(_LinkedList* ll)
 {
 	return (ll->LLPointer == NilValue);
 }
