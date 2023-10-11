@@ -1,7 +1,7 @@
 #include "Queue_internal.h"
 //#define DEBUG_QUEUE_REMOVE
 
-static void* remove_internal(_Queue* q)
+internal void* remove_internal(_Queue* q)
 {
 	ElementSpecification* spec = (ElementSpecification*)q;
 	char* ptr = spec->Memory + (q->Front * spec->per_elem_size);

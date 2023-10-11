@@ -2,7 +2,7 @@
 #pragma warning(disable : 4715)
 #pragma warning(disable : 4033)
 
-static Boolean isEmpty_internal(_Stack* s)
+internal Boolean isEmpty_internal(_Stack* s)
 {
     return(s->Top == -1);
 }

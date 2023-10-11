@@ -1,7 +1,7 @@
 #include "Stack_internal.h"
 #define DEBUG_PUSH
 
-static void push_internal(void* item, _Stack* s)
+internal void push_internal(void* item, _Stack* s)
 {
     ElementSpecification* spec = (ElementSpecification*)s;
     s->Top++;

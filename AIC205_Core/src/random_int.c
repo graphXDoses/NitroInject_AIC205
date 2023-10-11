@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-static int RandInitialized = 0;
+internal int RandInitialized = 0;
 
 static void initRand(int seed_arg, int should_seed)
 {

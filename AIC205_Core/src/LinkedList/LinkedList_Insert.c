@@ -1,7 +1,7 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_INSERT
 
-static int GetNode_internal(_LinkedList* ll)
+internal int GetNode_internal(_LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int res = ll->FreePtr;
@@ -13,7 +13,7 @@ static int GetNode_internal(_LinkedList* ll)
 	return(res);
 }
 
-static void Insert_internal(void* item, int PredPtr, _LinkedList* ll)
+internal void Insert_internal(void* item, int PredPtr, _LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int TempPtr = GetNode_internal(ll);

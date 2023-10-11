@@ -2,7 +2,7 @@
 #pragma warning(disable : 4715)
 #pragma warning(disable : 4033)
 
-static Boolean isFull_internal(_Stack* s)
+internal Boolean isFull_internal(_Stack* s)
 {
 	ElementSpecification* spec = (ElementSpecification*)s;
 	return (s->Top == ((TOTAL_ELEMENT_ARRAY_BYTES / spec->per_elem_size) - 1));

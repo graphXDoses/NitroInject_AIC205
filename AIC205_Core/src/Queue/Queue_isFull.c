@@ -2,7 +2,7 @@
 #pragma warning(disable : 4715)
 #pragma warning(disable : 4033)
 
-static Boolean isFull_internal(_Queue* q)
+internal Boolean isFull_internal(_Queue* q)
 {
 	ElementSpecification* spec = (ElementSpecification*)q;
 	int max_q_elements = TOTAL_ELEMENT_ARRAY_BYTES / (spec->per_elem_size);

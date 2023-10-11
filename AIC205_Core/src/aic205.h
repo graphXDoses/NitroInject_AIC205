@@ -4,14 +4,20 @@
 #include <stdio.h>
 #include <string.h>
 
-#pragma region Utils
+#pragma region GeneralPurposeUtilMacros
 #define BYTE_OFFSET(end, start) (((char*)end) - ((char*)start))
 #define ITERRAY_BEGIN(a)        { void* q; int i; for(q = (void*)a, i=0; BYTE_OFFSET(q, a) < sizeof(a); ((char*)q)+=sizeof(a[0]), i++){
 #define ITERRAY_END             }}
 
-typedef enum { False, True } Boolean;
+typedef enum { False, True }    Boolean;
 #define NilValue                -1
 
+#define local_persist           static
+#define internal                static
+#pragma endregion
+
+
+#pragma region FunctionRandomInts
 extern  void randomForceSeed(int);
 extern  int  randomInt(void);
 extern  int  randomIntFromTo(int, int);

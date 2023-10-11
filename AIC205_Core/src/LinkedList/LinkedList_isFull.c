@@ -1,7 +1,7 @@
 #include "LinkedList_internal.h"
 #define DEBUG_LL_ISFULL
 
-static Boolean isFull_internal(_LinkedList* ll)
+internal Boolean isFull_internal(_LinkedList* ll)
 {
 	return (ll->FreePtr == NilValue);
 }

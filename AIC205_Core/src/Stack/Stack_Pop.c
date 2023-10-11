@@ -2,7 +2,7 @@
 #pragma warning(disable : 4715)
 #pragma warning(disable : 4033)
 
-static void* pop_internal(_Stack* s)
+internal void* pop_internal(_Stack* s)
 {
 	ElementSpecification* spec = (ElementSpecification*)s;
 	char* ptr = &(spec->Memory[s->Top-- * spec->per_elem_size]);

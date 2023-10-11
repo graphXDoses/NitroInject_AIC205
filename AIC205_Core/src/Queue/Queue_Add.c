@@ -2,7 +2,7 @@
 
 #define DEBUG_QUEUE_ADD
 
-static void add_internal(void* item, _Queue* q)
+internal void add_internal(void* item, _Queue* q)
 {
 	ElementSpecification* spec = (ElementSpecification*)q;
 	char* ptr = spec->Memory + (q->Rear * spec->per_elem_size);

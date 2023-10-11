@@ -1,6 +1,6 @@
 #include "LinkedList_internal.h"
 
-static void initializeStoragePool(LinkedList* ll)
+internal void initializeStoragePool(LinkedList* ll)
 {
 	ElementSpecification* spec = (ElementSpecification*)ll;
 	int n, NumberOfNodes, step;
