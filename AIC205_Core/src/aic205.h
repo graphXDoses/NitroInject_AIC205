@@ -16,6 +16,7 @@ typedef enum { False, True }    Boolean;
 #define internal                static
 #pragma endregion
 
+#define TOTAL_ELEMENT_ARRAY_BYTES 512
 
 #pragma region FunctionRandomInts
 extern  void randomForceSeed(int);
