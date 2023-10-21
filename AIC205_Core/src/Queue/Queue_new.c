@@ -11,6 +11,7 @@ Queue* newQueue(size_t size)
 	LOAD_FUNCPOOL(Remove);
 	LOAD_FUNCPOOL(Add);
 	LOAD_FUNCPOOL(Traverse);
+	LOAD_FUNCPOOL(getID);
 
 	if (n >= MAX_DATASTRUCT_OBJECTS)
 	{
@@ -31,6 +32,7 @@ Queue* newQueue(size_t size)
 	BIND_METHOD_TO_OBJECT(Remove, &THIS)
 	BIND_METHOD_TO_OBJECT(Add, 0, &THIS)
 	BIND_METHOD_TO_OBJECT(Traverse, &THIS)
+	BIND_METHOD_TO_OBJECT(getID, &THIS)
 #pragma warning(default : 4113)
 #undef LOAD_FUNCPOOL
 #undef BIND_METHOD_TO_OBJECT

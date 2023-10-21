@@ -48,6 +48,8 @@ typedef struct
 	void*   (*Remove)(void);
 	void    (*Add)(void*);
 	void    (*Traverse)(void);
+	// Getters/Setters
+	int     (*getID)(void);
 } Queue;
 
 extern Queue* newQueue(size_t);

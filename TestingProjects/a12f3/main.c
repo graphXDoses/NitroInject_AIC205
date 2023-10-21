@@ -51,11 +51,11 @@ void DisplayStatusQueue(QueueType* q)
 
     if (q->isEmpty())
     {
-        printf("\n%s is empty\n", QNAME[q->ID - 1]);
+        printf("\n%s is empty\n", QNAME[q->getID() - 1]);
         return;
     }
 
-    puts(QNAME[q->ID - 1]);
+    puts(QNAME[q->getID() - 1]);
     printf(
         "%-25s%-8s%-8s%-8s%-5s\n"
         ,

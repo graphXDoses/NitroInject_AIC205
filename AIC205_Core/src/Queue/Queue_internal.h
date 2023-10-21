@@ -17,5 +17,6 @@ METHOD_DECL(Boolean, isFull_Queue,   _Queue*);
 METHOD_DECL(void*,   Remove_Queue,   _Queue*);
 METHOD_DECL(void,    Add_Queue,      void*, _Queue*);
 METHOD_DECL(void,    Traverse_Queue, _Queue*);
+METHOD_DECL(int,     getID_Queue,    _Queue*);
 
 #endif
